@@ -109,7 +109,7 @@ tempo:
     resources:
       requests:
         cpu: 100m
-        memory: 256Mi
+        memory: 512Mi
       limits:
         cpu: 500m
         memory: 1Gi
@@ -124,6 +124,11 @@ tempo:
     
     ingester:
       max_block_duration: 5m
+      lifecycler:
+        ring:
+          kvstore:
+            store: inmemory # Indispensable pour éviter de chercher un stockage externe
+          replication_factor: 1
     
     compactor:
       compaction:
